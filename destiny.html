@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Digital - Cumpleaños de Abbie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS GENERALES Y CONFIGURACIÓN --- */
+        :root {
+            /* Variables de color basadas en la imagen */
+            --primary-bg-color: #0b153e; /* Fondo azul marino inferior */
+            --accent-text-color: #84f2c0; /* Texto de detalles claro */
+            --main-text-color: #ffffff;   /* Texto blanco principal */
+            
+            /* --- REEMPLAZAR IMAGEN DE FONDO --- */
+            /* He creado una versión del fondo submarino recreada, sin los personajes.
+               Si deseas cambiar esta imagen, simplemente reemplaza la URL a continuación 
+               por la URL de tu propia imagen. Asegúrate de que tenga una relación de aspecto similar.
+               La imagen que he usado aquí es una recreación sin personajes para cumplir con los derechos de autor. */
+            --hero-image-url: url('data:image/jpeg;base64, ... [DATOS DE LA IMAGEN GENERADA] ... '); /* Reemplaza esto si quieres */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Open Sans', sans-serif;
+            overflow: hidden; /* Evita barras de desplazamiento */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ececec; /* Color de fondo externo para PC */
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .invitation-container {
+            width: 100vw; /* Ancho de la ventana */
+            height: calc(100vw * (720 / 1280)); /* Mantiene la relación de aspecto 16:9 */
+            max-width: 1280px; /* Tamaño máximo para pantallas grandes */
+            max-height: 720px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background-color: #fff;
+            position: relative;
+        }
+
+        /* --- SECCIÓN SUPERIOR DE LA IMAGEN (HERO) --- */
+        .hero-section {
+            flex: 1;
+            background-image: var(--hero-image-url);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        /* Degradado suave sobre la imagen */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        /* --- SECCIÓN INFERIOR DE TEXTO --- */
+        .text-section {
+            height: 35%; /* Ocupa el 35% inferior */
+            background-color: var(--primary-bg-color);
+            display: flex;
+            color: var(--main-text-color);
+            padding: 2% 5%; /* Padding porcentual */
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Subsección de texto principal (Izquierda) */
+        .main-text-block {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Estilo para 'ABBIE'S' */
+        .name-title {
+            font-weight: 400;
+            font-size: 1.5vw; /* Tamaño de fuente responsivo */
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        /* Estilo para 'BIRTHDAY PARTY' */
+        .party-title {
+            font-weight: 700;
+            font-size: 3vw; /* Tamaño de fuente responsivo */
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+            margin: 0 0 1% 0; /* Margen inferior porcentual */
+        }
+
+        /* Estilo para la descripción */
+        .event-description {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 1.2vw; /* Tamaño de fuente responsivo */
+            margin: 0;
+        }
+
+        /* Subsección de detalles (Derecha) */
+        .details-block {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.4;
+            padding-left: 5%;
+        }
+
+        .details-item {
+            display: flex;
+            width: 100%;
+            font-size: 1.1vw; /* Tamaño de fuente responsivo */
+        }
+
+        .details-label {
+            width: 40%;
+            color: var(--accent-text-color);
+            font-weight: 700;
+        }
+
+        .details-value {
+            width: 60%;
+            color: var(--main-text-color);
+            font-weight: 400;
+        }
+
+        /* --- MARCA DE AGUA O COPYRIGHT --- */
+        .copyright-text {
+            position: absolute;
+            bottom: 1%;
+            left: 2%;
+            font-size: 0.6vw;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* --- AJUSTES PARA DISPOSITIVOS MÓVILES (OPCIONAL) --- */
+        @media (max-width: 600px) {
+            .invitation-container {
+                height: 100vh; /* Ocupa toda la altura */
+                width: calc(100vh * (1280 / 720)); /* Mantiene proporción 16:9 verticalmente */
+                overflow: hidden;
+            }
+            .text-section {
+                flex-direction: column;
+                height: 40%;
+                padding: 5%;
+            }
+            .main-text-block, .details-block {
+                width: 100%;
+                text-align: center;
+                align-items: center;
+                padding: 0;
+                margin-bottom: 3%;
+            }
+            .details-block {
+                padding-left: 0;
+            }
+            .name-title { font-size: 3vw; }
+            .party-title { font-size: 6vw; }
+            .event-description { font-size: 2.5vw; }
+            .details-item { font-size: 2vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invitation-container">
+        <div class="hero-section">
+            <div class="hero-overlay"></div>
+            </div>
+
+        <div class="text-section">
+            
+            <div class="main-text-block">
+                <p class="name-title">Destiny Alexandra</p>
+                <h1 class="party-title">Cumple<br>Años</h1>
+                <p class="event-description">Añade aquí la descripción de tu evento</p>
+            </div>
+
+            <div class="details-block">
+                <div class="details-item">
+                    <div class="details-label">Date &amp; Time</div>
+                    <div class="details-value">Añade tus detalles aquí</div>
+                </div>
+                <div class="details-item">
+                    <div class="details-label">Location</div>
+                    <div class="details-value">Añade tus detalles aquí</div>
+                </div>
+                <div class="details-item">
+                    <div class="details-label">RSVP</div>
+                    <div class="details-value">Añade tus detalles aquí</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

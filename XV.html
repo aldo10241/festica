@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años</title>
+    <style>
+        /* Variables de color y tipografía */
+        :root {
+            --dorado: #D4AF37;
+            --fondo: #FAFAFA;
+            --texto: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--fondo);
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif;
+            font-weight: normal;
+            text-align: center;
+        }
+
+        /* Animaciones globales */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sección Hero (Inicio) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(250, 250, 250, 0.8), rgba(250, 250, 250, 0.9)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--dorado);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contador */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .time-box {
+            background: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            min-width: 70px;
+            border: 1px solid #f0f0f0;
+        }
+        .time-box span {
+            display: block;
+            font-size: 2rem;
+            color: var(--dorado);
+            font-family: 'Georgia', serif;
+        }
+        .time-box small {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Carrusel de Fotos */
+        .carousel-container {
+            position: relative;
+            max-width: 600px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            animation: fade 1.5s;
+        }
+        .carousel-slide.active {
+            display: block;
+        }
+        @keyframes fade {
+            from { opacity: 0.4 } 
+            to { opacity: 1 }
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.3);
+            border: none;
+        }
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+        .prev:hover, .next:hover { background-color: rgba(212, 175, 55, 0.8); }
+
+        /* Detalles y Mapa */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        @media(min-width: 600px) {
+            .details-grid { grid-template-columns: 1fr 1fr; }
+        }
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Botón de Asistencia */
+        .btn-rsvp {
+            display: inline-block;
+            background-color: var(--dorado);
+            color: var(--blanco);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            margin-top: 30px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+        .btn-rsvp:hover {
+            background-color: #b8962e;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="fade-in">
+            <p>Con la bendición de Dios y de mis padres</p>
+            <h1>Mis XV Años</h1>
+            <h2>Yunuen</h2>
+            <p>Sábado, 25 de Octubre de 2025</p>
+        </div>
+    </header>
+
+    <section class="fade-in">
+        <h2>Faltan...</h2>
+        <div class="countdown" id="countdown">
+            <div class="time-box"><span id="days">00</span><small>Días</small></div>
+            <div class="time-box"><span id="hours">00</span><small>Hrs</small></div>
+            <div class="time-box"><span id="minutes">00</span><small>Min</small></div>
+            <div class="time-box"><span id="seconds">00</span><small>Seg</small></div>
+        </div>
+    </section>
+
+    <section class="fade-in">
+        <h2>Mis Momentos</h2>
+        <div class="carousel-container">
+            <img class="carousel-slide active" src="assets/Foto1.png" alt="Foto 1">
+            <img class="carousel-slide" src="assets/Foto2.png" alt="Foto 2">
+            
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="fade-in">
+        <h2>Ubicación del Evento</h2>
+        <div class="details-grid">
+            <div>
+                <h3 style="color: var(--dorado);">Ceremonia Religiosa</h3>
+                <p><strong>Parroquia de San Miguel</strong></p>
+                <p>4:00 PM</p>
+                <p>Av. Principal #123, Centro.</p>
+            </div>
+            <div>
+                <h3 style="color: var(--dorado);">Recepción</h3>
+                <p><strong>Salón Los Ángeles</strong></p>
+                <p>7:00 PM</p>
+                <p>Blvd. Fiesta #456, Norte.</p>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.661608670183!2d-99.16766468461876!3d19.427024586887713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd1563%3A0x6c366f0e2de02ff7!2sEl%20Ángel%20de%20la%20Independencia!5e0!3m2!1ses!2smx!4v1682352000000!5m2!1ses!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <section class="fade-in" style="text-align: center; margin-bottom: 50px;">
+        <h2>Confirmación de Asistencia</h2>
+        <p>Me encantaría que me acompañaras en este día tan especial.</p>
+        <p>Por favor, confirma tu asistencia antes del 20 de Octubre.</p>
+        <a href="https://wa.me/525537882030?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20años." class="btn-rsvp" target="_blank">Confirmar por WhatsApp</a>
+    </section>
+
+    <script>
+        // 1. Animaciones al hacer scroll (Fade-in)
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // 2. Carrusel de Fotos
+        let slideIndex = 0;
+        const slides = document.querySelectorAll(".carousel-slide");
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove("active"));
+            slideIndex = (n + slides.length) % slides.length;
+            slides[slideIndex].classList.add("active");
+        }
+
+        function changeSlide(n) { showSlide(slideIndex + n); }
+        
+        // Carrusel automático cada 4 segundos
+        setInterval(() => { changeSlide(1); }, 4000);
+
+        // 3. Contador Regresivo
+        // Cambia la fecha de aquí por la del evento (Año, Mes (0-11), Día, Hora, Minuto)
+        const countDownDate = new Date("Oct 25, 2025 16:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "¡Llegó el gran día!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
